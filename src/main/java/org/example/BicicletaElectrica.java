@@ -30,11 +30,7 @@ public class BicicletaElectrica extends Bicicleta implements ConGarantiaExtendid
     }
 
     public void setCertificada(boolean certificada){
-        if(certificada==true){
-            System.out.println("Si");
-        }else{
-            System.out.println("No");
-        }
+        this.certificada = certificada;
     }
 
     public boolean isGarantiaExtendidaActiva() {
@@ -42,18 +38,39 @@ public class BicicletaElectrica extends Bicicleta implements ConGarantiaExtendid
     }
 
     public void setGarantiaExtendidaActiva(boolean garantiaExtendidaActiva){
-        if(activarGarantia()==true){
-            this.garantiaExtendidaActiva=true;
-        }
+        this.garantiaExtendidaActiva=garantiaExtendidaActiva;
     }
     @Override
     public boolean activarGarantia(){
-        return garantiaExtendidaActiva=true;
+        garantiaExtendidaActiva=true;
+        return true;
     }
 
 
     @Override
     public void tieneGarantiaExtendida(){
         System.out.println("Garantia: "+garantiaExtendidaActiva);
+    }
+
+    @Override
+    public double calcularCostoMantenimiento(){
+
+        double costo=45000;
+
+        if(!certificada){
+            costo*=1.25;
+        }
+        return costo;
+    }
+
+    @Override
+    public String toString(){
+        return "Codigo: "+getCodigo()+
+                ", Año de fabricacion: "+getAnioFabricacion()+
+                ", Peso: "+getPeso()+
+                ", Autonomia: "+getAutonomiaKM()+
+                ", Esta certificada: "+isCertificada()+
+                ", Tiene garantia: "+isGarantiaExtendidaActiva()+
+                ", Costo de mantencion: "+calcularCostoMantenimiento();
     }
 }

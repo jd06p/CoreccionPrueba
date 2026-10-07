@@ -6,9 +6,9 @@ public abstract class Bicicleta {
     private double peso;
 
     public Bicicleta(String codigo, int anioFabricacion, double peso) {
-        this.codigo = codigo;
-        this.anioFabricacion = anioFabricacion;
-        this.peso = peso;
+        setCodigo(codigo);
+        setAnioFabricacion(anioFabricacion);
+        setPeso(peso);
     }
 
     public String getCodigo() {
@@ -28,7 +28,7 @@ public abstract class Bicicleta {
 
     public void setAnioFabricacion(int anioFabricacion){
         if(anioFabricacion<2000||anioFabricacion>2026){
-            throw new IllegalArgumentException("El año de fabricacion no puede estar vacio");
+            throw new IllegalArgumentException("El año de fabricación debe estar entre 2000 y 2026.");
         }
         this.anioFabricacion = anioFabricacion;
     }
@@ -38,14 +38,18 @@ public abstract class Bicicleta {
     }
 
     public void setPeso(double peso){
-        if(peso<0){
+        if(peso<=0){
             throw new IllegalArgumentException("El peso debe ser mayor que 0");
         }
+        this.peso=peso;
     }
+
+    public abstract double calcularCostoMantenimiento();
 
     @Override
     public String toString(){
         return "Codigo: "+getCodigo()+
-                "Año de fabricacion: "+getAnioFabricacion();
+                ", Año de fabricacion : "+getAnioFabricacion()+
+                ", Peso: "+getPeso();
     }
 }

@@ -19,4 +19,23 @@ public class BicicletaMontanya extends Bicicleta {
     public void setCantidadSuspensiones(int cantidadSuspensiones) {
         this.cantidadSuspensiones = cantidadSuspensiones;
     }
+
+    @Override
+    public double calcularCostoMantenimiento(){
+        double costo=30000;
+
+        if(cantidadSuspensiones>1){
+            costo*=1.15;
+        }
+        return costo;
+    }
+
+    @Override
+    public String toString(){
+        return "Codigo: "+getCodigo()+
+                ", Año de fabricacion: "+getAnioFabricacion()+
+                ", Peso: "+getPeso()+
+                ", Cantidad de suspensiones: "+getCantidadSuspensiones()+
+                ", Costo de mantencion: "+calcularCostoMantenimiento();
+    }
 }
